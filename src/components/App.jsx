@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Route, Routes } from "react-router-dom"
 
 
+
 const ContactsPage = lazy(() => import("../pages/ContactsPage/ContactsPage")) 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage")) 
 const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage")) 
@@ -28,12 +29,13 @@ useEffect(()=>{ dispatch(fetchContacts()) }, [dispatch])
   return (
     <div className={css.container}>
       <header>
-        <h1>Phonebook</h1>
+       
         <nav>
           <Navigation/>
         </nav>
       </header>
       <main>
+       <h1>Phonebook</h1>
         <Suspense fallback={<Loader/>}>
           <Routes>
             <Route path="/" element={<HomePage />} />
