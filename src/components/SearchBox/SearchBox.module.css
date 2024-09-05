@@ -1,0 +1,21 @@
+.wrap{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 10px;
+  max-width: 240px;
+
+
+}
+.title{
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.search{
+  border: 1px solid black;
+  border-radius: 2px;
+  height: 20px;
+  width: 230px;
+  padding-left: 6px;
+}

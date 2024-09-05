@@ -1,0 +1,31 @@
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  max-width: 240px;
+  padding: 10px 10px;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 6px;
+  
+}
+.contactWrap{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.field{
+  display: flex;
+  gap: 10px;
+  
+}
+.deleteBtn{
+  font-size: 14px;
+  padding: 4px 4px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+}
