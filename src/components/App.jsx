@@ -46,7 +46,7 @@ useEffect(()=>{ dispatch(fetchContacts()) }, [dispatch])
         </Suspense>
       </main>
       <footer>
-
+        <p>footer</p>
       </footer>
       
       <ContactForm/>
