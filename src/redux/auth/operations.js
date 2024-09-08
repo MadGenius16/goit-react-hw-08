@@ -15,7 +15,6 @@ export const apiLogin = createAsyncThunk(
       try {
         const {data} = await instance.post("users/login", formData)
         setAuthHeders(data.token)
-        console.log(data)
         return data;
       } 
       catch (error) {
@@ -30,7 +29,6 @@ export const apiRegister = createAsyncThunk(
       try {
         const {data} = await instance.post("users/signup", formData)
         setAuthHeders(data.token)
-        console.log(data)
         return data;
       } 
       catch (error) {
@@ -51,6 +49,26 @@ export const apiRefreshUser = createAsyncThunk(
     } catch (error) {
       return thunkApi.rejectWithValue(error.message)
     }
-   
-  }
-)
+  },
+);
+  // {
+  //   condition: (_, thunkApi) => {
+  //   const state = thunkApi.getState();
+  //   const token = state.auth.token;
+  //   if(token) return true;
+  //   return false
+  //   }
+  // }
+  export const apiLogout = createAsyncThunk(
+    "auth/logout",
+    async (_, thunkApi) => {
+        try {
+          await instance.post("users/logout")
+          return ;
+        } 
+        catch (error) {
+          return thunkApi.rejectWithValue(error.message);
+        }
+   }
+  );
+
