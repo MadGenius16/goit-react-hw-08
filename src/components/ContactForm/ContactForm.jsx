@@ -2,21 +2,23 @@ import {ErrorMessage, Formik, Form, Field } from 'formik';
 import css from './ContactForm.module.css'
 import * as Yup from "yup";
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactsOps';
+import { apiAddContact } from '../../redux/contacts/operations';
+import toast from 'react-hot-toast';
+
 
 const phoneRegExp = /^[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
 
 const contactValidationSchema = Yup.object().shape({
   name: Yup
   .string()
-  .required("Ім'я профілю обов'язкове")
+  .required("Profile name is required")
   .min(2, "ім'я профілю має бути мінімум 3 символи")
   .max(50, "ім'я профілю має бути меньшим за 50 символів"),
 
   number: Yup
   .string()
   .matches(phoneRegExp, "Номер телефону має співпадати з форматом 'xxx-xx-xx'")
-  .required("Номер телефону є обов'язковий"),
+  .required("Phone number is required"),
 })
 
 const ContactForm = () => {
@@ -24,7 +26,10 @@ const ContactForm = () => {
 const dispatch = useDispatch()
 
 const handleSubmit = (values, actions) => {
-  dispatch(addContact(values))
+  dispatch(apiAddContact(values)).unwrap()
+  .then(() => {
+    toast.success("Contact added successfully.");
+  });
   actions.resetForm()
 }
 
@@ -35,7 +40,7 @@ const handleSubmit = (values, actions) => {
     validationSchema={contactValidationSchema} >
       <Form className={css.form}>
         <label className={css.label} >
-          <span>Name</span>
+          <span className={css.span}>Name</span>
           <Field 
           className={css.field} 
           type="text" 
@@ -47,7 +52,7 @@ const handleSubmit = (values, actions) => {
         </label>
         
         <label className={css.label} >
-          <span>Number</span>
+          <span className={css.span}>Number</span>
           <Field 
           className={css.field} 
           type="text" 

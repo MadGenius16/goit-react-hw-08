@@ -2,14 +2,25 @@
   display: flex;
   gap: 16px;
   list-style: none;
-  padding: 16px;
+  padding-left: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   
 }
 
 .navLink {
+  display: flex;
+  justify-content: center;
+  padding: 6px 4px;
+  border-radius: 6px;
   color: black;
   font-size: 20px;
-  text-decoration: none;
+}
+
+.navLink:hover {
+  border: transparent;
+  background-color: darkgray;
+  transition: 0.5s ease;
 }
 
 .active{

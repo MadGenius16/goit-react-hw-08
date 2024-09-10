@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.title {
+  font-size: 40px;
+  margin-top: 80px;
+}
+
+.text {
+  font-size: 20px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.linkContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 10px;
+  width: max-content;
+  align-items: center;
+}
+
+.link:hover {
+  border: transparent;
+  background-color: rgb(240, 149, 121);
+  transition: 1s ease;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}

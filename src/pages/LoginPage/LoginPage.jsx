@@ -12,13 +12,13 @@ const loginValidationSchema = Yup.object().shape({
   email: Yup
   .string()
   .email("Не коректна ел.адреса")
-  .required("Електрона адреса є обов'язковим"),
+  .required("An email address is required"),
 
   password: Yup
   .string()
   .min(8, "ім'я профілю має бути мінімум 3 символи")
   .max(16, "ім'я профілю має бути меньшим за 16 символів")
-  .required("пароль є обов'язковим"),
+  .required("Password is required"),
 })
 
 const LoginPage = () => {
@@ -34,6 +34,8 @@ const handleSubmit = (values) => {
 };
 
   return (
+    <div>
+      <h2 className={css.title}>Login form</h2>
     <Formik 
     initialValues={INITIAL_VALUES} 
     onSubmit={handleSubmit} 
@@ -41,7 +43,7 @@ const handleSubmit = (values) => {
       <Form className={css.form}>
         
         <label className={css.label} >
-          <span>Email</span>
+          <span className={css.span}>Email</span>
           <Field 
           className={css.field} 
           type="text" 
@@ -54,7 +56,7 @@ const handleSubmit = (values) => {
         </label>
         
         <label className={css.label} >
-          <span>Password</span>
+          <span className={css.span}>Password</span>
           <Field 
           className={css.field} 
           type="password" 
@@ -71,6 +73,7 @@ const handleSubmit = (values) => {
         Login or password is incorrect{error}</p>}
       </Form>
     </Formik>
+    </div>
   )
 }
 

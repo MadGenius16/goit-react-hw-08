@@ -2,10 +2,22 @@ import { FaUser } from "react-icons/fa6";
 import { IoCall } from "react-icons/io5";
 import css from './Contact.module.css'
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsOps";
+
+import { apiDeleteContact } from "../../redux/contacts/operations";
+import toast, { Toaster } from "react-hot-toast";
+
 
 const Contact = ({ id, name, number}) => {
 const dispatch = useDispatch()
+
+const onDeleteContact = () => {
+  dispatch(apiDeleteContact(id))
+    .unwrap()
+    .then(() => {
+      toast.success("Contact deleted successfully.");
+    });
+};
+
 
   return (
     <div className={css.container}>
@@ -13,7 +25,8 @@ const dispatch = useDispatch()
         <p className={css.field}><FaUser />{name}</p>
         <p className={css.field}><IoCall />{number}</p>
       </div>
-      <button onClick={()=>dispatch(deleteContact(id))} className={css.deleteBtn} type="button">Delete</button>
+      <button onClick={onDeleteContact} className={css.deleteBtn} type="button">❌Delete</button>
+      <Toaster/>
     </div>
   )
 }

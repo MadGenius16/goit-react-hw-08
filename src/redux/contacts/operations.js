@@ -33,3 +33,14 @@ export const apiDeleteContact = createAsyncThunk("contacts/delete",
    }
   }
 );
+
+export const apiEditContact = createAsyncThunk("contacts/edit",
+  async(contactId, thunkApi)=>{
+   try {
+     const {data} = await instance.patch(`contacts/${contactId}`)
+     return data
+   } catch (error) {
+     return thunkApi.rejectWithValue(error.message)
+   }
+  }
+);

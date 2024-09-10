@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { apiGetAllContacts } from "./operations";
+import { apiAddContact, apiDeleteContact, apiGetAllContacts } from "./operations";
 
 
 const INITIAL_STATE ={
@@ -12,16 +12,42 @@ const contactsSlice = createSlice({
   name: "contacts",
   initialState: INITIAL_STATE,
   reducers:{},
-  extraReducers: builder=> builder
+  extraReducers: (builder) => builder
   .addCase(apiGetAllContacts.pending, (state)=>{
     state.isLoading = true;
     state.error = null;
   })
-  .addCase(apiGetAllContacts.fulfilled, (action, state)=>{
+  .addCase(apiGetAllContacts.fulfilled, (state, action)=>{
     state.isLoading = false;
     state.contacts = action.payload;
   })
-  .addCase(apiGetAllContacts.rejected, (action, state)=>{
+  .addCase(apiGetAllContacts.rejected, (state, action)=>{
+    state.isLoading = false;
+    state.error = action.payload;
+  })
+
+  .addCase(apiAddContact.pending, ( state)=>{
+    state.isLoading = true;
+    state.error = null;
+  })
+  .addCase(apiAddContact.fulfilled, (state, action)=>{
+    state.isLoading = false;
+    state.contacts.push(action.payload);
+  })
+  .addCase(apiAddContact.rejected, (state, action)=>{
+    state.isLoading = false;
+    state.error = action.payload;
+  })
+
+  .addCase(apiDeleteContact.pending, (state)=>{
+    state.isLoading = true;
+    state.error = null;
+  })
+  .addCase(apiDeleteContact.fulfilled, (state, action)=>{
+    state.contacts = state.contacts.filter(
+      (contact) => contact.id !== action.payload.id);
+  })
+  .addCase(apiDeleteContact.rejected, (state, action)=>{
     state.isLoading = false;
     state.error = action.payload;
   })

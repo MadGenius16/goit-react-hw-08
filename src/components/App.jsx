@@ -10,12 +10,10 @@ import RestrictedRoute from "./RestrictedRoute/RestrictedRoute"
 import PrivateRoute from "./PrivateRoute/PrivateRoute"
 
 
-
 const ContactsPage = lazy(() => import("../pages/ContactsPage/ContactsPage")) 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage")) 
 const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage")) 
 const RegistrationPage = lazy(() => import("../pages/RegistrationPage/RegistrationPage")) 
-
 
 
 function App() {
@@ -35,7 +33,6 @@ useEffect(()=>{
   ) : (
     <div className={css.container}>
           <Layout/>
-
         <Suspense fallback={<Loader/>}>
           <Routes>
             <Route path="/" element={<HomePage />} />

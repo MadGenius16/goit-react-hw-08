@@ -4,26 +4,27 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from 'react-redux';
 import { apiRegister } from '../../redux/auth/operations';
 import { selectAuthError } from '../../redux/auth/selectors';
+import toast from 'react-hot-toast';
 
 
 
 const registerValidationSchema = Yup.object().shape({
   name: Yup
   .string()
-  .required("Ім'я профілю обов'язкове")
+  .required("Profile name is required")
   .min(2, "ім'я профілю має бути мінімум 3 символи")
   .max(50, "ім'я профілю має бути меньшим за 50 символів"),
 
   email: Yup
   .string()
   .email("Не коректна ел.адреса")
-  .required("Електрона адреса є обов'язковим"),
+  .required("An email address is required"),
 
   password: Yup
   .string()
   .min(8, "ім'я профілю має бути мінімум 3 символи")
   .max(16, "ім'я профілю має бути меньшим за 16 символів")
-  .required("пароль є обов'язковим"),
+  .required("Password is required"),
 })
 
 const RegistrationPage = () => {
@@ -35,17 +36,22 @@ const INITIAL_VALUES ={
   password: '',
 };
 const handleSubmit = (values) => {
-    dispatch(apiRegister(values))
-};
+    dispatch(apiRegister(values)).unwrap()
+    .then(() => {
+      toast.success("Successful registration🎉");
+    });
+  };
 
   return (
+    <div>
+      <h2 className={css.title}>Registration form</h2>
     <Formik 
     initialValues={INITIAL_VALUES} 
     onSubmit={handleSubmit} 
     validationSchema={registerValidationSchema} >
       <Form className={css.form}>
         <label className={css.label} >
-          <span>Name</span>
+          <span className={css.span}>Name</span>
           <Field 
           className={css.field} 
           type="text" 
@@ -58,7 +64,7 @@ const handleSubmit = (values) => {
         </label>
 
         <label className={css.label} >
-          <span>Email</span>
+          <span className={css.span}>Email</span>
           <Field 
           className={css.field} 
           type="text" 
@@ -71,7 +77,7 @@ const handleSubmit = (values) => {
         </label>
         
         <label className={css.label} >
-          <span>Password</span>
+          <span className={css.span}>Password</span>
           <Field 
           className={css.field} 
           type="password" 
@@ -88,6 +94,7 @@ const handleSubmit = (values) => {
         Login or password is incorrect{error}</p>}
       </Form>
     </Formik>
+    </div>
   )
 }
 
