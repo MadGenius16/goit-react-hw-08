@@ -15,9 +15,9 @@ const UserMenu = () => {
   }
   return (
     <div className={css.logoutWrap}>
-            <p className={css.userText}><RiUserFollowLine className={css.icon} /> {user.name}</p>
-            <button className={css.btnLogout} onClick={onLogout} type="button">Logout<RxExit /></button>
-          </div>
+        <p className={css.userText}><RiUserFollowLine className={css.icon} /> {user.name}</p>
+        <button className={css.btnLogout} onClick={onLogout} type="button">Logout<RxExit /></button>
+    </div>
   )
 }
 

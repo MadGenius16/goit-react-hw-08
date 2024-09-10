@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   gap: 10px;
-  width: 260px;
+  width: 340px;
   padding: 10px 10px;
   align-items: center;
   border: 2px solid black;
@@ -13,7 +13,8 @@
 .contactWrap{
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+
 }
 .field{
   display: flex;
